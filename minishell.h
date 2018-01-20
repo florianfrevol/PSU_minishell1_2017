@@ -16,3 +16,11 @@ void print_only_begining(char *str);
 int check_if_empty(char *str);
 void check_for_commande(char *str);
 int compt_number(char *str);
+char **put_setenv(char **env, char *str);
+int compt_lign(char **env);
+char *find_first_word(char *str);
+
+typedef struct s
+{
+	char **new_env;	
+} s_t;

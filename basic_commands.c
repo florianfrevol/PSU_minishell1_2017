@@ -17,7 +17,7 @@ int compare(char *str, char *compare)
 			e ++;
 		i ++;
 	}
-	if (e == my_strlen(compare))
+	if (e == my_strlen(compare) && (str[i] == ' ' || str[i] == '\0' || str[i] == '\n'))
 		return (2);
 	else
 		return (3);
@@ -42,7 +42,8 @@ int check_if_empty(char *str)
 	int e = 0;
 
 	while (str[i] != '\0' && str[i] != '\n') {
-		if (str[i] != ' ' && str[i] != '\n' && str[i] != '\0')
+		if (str[i] != ' ' && str[i] != '\n' &&
+		str[i] != '\0' && str[i] != '\t')
 			e ++;
 		i ++;
 	}
