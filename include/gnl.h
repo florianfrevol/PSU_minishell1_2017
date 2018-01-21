@@ -1,4 +1,4 @@
- /*
+/*
 ** EPITECH PROJECT, 2017
 ** gnl.h
 ** File description:
@@ -12,6 +12,7 @@ char *get_next_line(int fd);
 char *get_next_line_dbg(int fd);
 int my_put_nbr(int nb);
 void my_putchar(char c);
+char *change_env(char *str);
 int my_putstr(char *str);
 char *my_revstr(char *str);
 int my_strlen(char *str);
@@ -28,5 +29,8 @@ int check_if_exist(char **env, char *str);
 char **check_unsetenv(char **env, char **tabl, char *str);
 int nbr_word(char *str);
 void print_env(char **env);
+char **check_setenv(char **env, char *str);
+void check_for_env(char **env, char *str);
+int check_word(char *str);
 
 #endif

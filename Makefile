@@ -10,7 +10,9 @@ SRC	=	src/shell.c 		\
 		src/unsetenv.c		\
 		src/setenv.c		\
 		src/src.c 		\
-		src/getnbr.c
+		src/getnbr.c		\
+		src/main.c		\
+		src/reduce_shell.c
 
 OBJ	=	$(SRC:.c=.o)
 
