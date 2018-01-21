@@ -6,7 +6,7 @@
 */
 
 #include <unistd.h>
-#include "include/gnl.h"
+#include "gnl.h"
 
 int compare(char *str, char *compare)
 {

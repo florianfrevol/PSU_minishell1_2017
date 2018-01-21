@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include <sys/types.h>
-#include "include/gnl.h"
+#include "gnl.h"
 #include <stdlib.h>
 
 int turn_spaces(char *str, int i)

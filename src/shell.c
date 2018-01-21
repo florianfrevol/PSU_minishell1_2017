@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include <sys/types.h>
-#include "include/gnl.h"
+#include "gnl.h"
 #include <stdlib.h>
 
 void print_env(char **env)

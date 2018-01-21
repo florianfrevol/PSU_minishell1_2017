@@ -5,7 +5,7 @@
 ** 
 */
 
-#include "include/gnl.h"
+#include "gnl.h"
 #include <stdlib.h>
 
 int compt_lign(char **env)

@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include <sys/types.h>
-#include "include/gnl.h"
+#include "gnl.h"
 #include <stdlib.h>
 
 int find_i(char **env, char *str)

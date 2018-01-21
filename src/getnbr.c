@@ -7,7 +7,7 @@
 
 #include <unistd.h>
 #include <stdlib.h>
-#include "include/gnl.h"
+#include "gnl.h"
 
 int get_nbr(char *str)
 {
