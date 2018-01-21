@@ -235,6 +235,8 @@ int main(int argc, char **argv, char **env)
 	while (1) {
 		my_putstr("$> ");
 		str = get_next_line(0);
+		if (str == NULL)
+			return(0);
 		tabl = create_tabl_str(str);
 		check_for_env(env, str);
 		check_for_commande(str);
