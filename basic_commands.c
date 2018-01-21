@@ -35,7 +35,7 @@ void print_only_begining(char *str)
 		write(2, &str[i], 1);
 		i ++;
 	}
-	write(2, ": Command not found.", 21);
+	write(2, ": Command not found.\n", 22);
 }
 
 int check_if_empty(char *str)
@@ -62,7 +62,6 @@ void check_for_commande(char *str)
 			compare(str, "setenv") +
 				compare(str, "unsetenv")) == 12) {
 			print_only_begining(str);
-			my_putchar('\n');
 		}
 	}
 }
