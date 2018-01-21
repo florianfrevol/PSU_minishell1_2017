@@ -6,7 +6,7 @@
 */
 
 #include <unistd.h>
-#include "include/minishell.h"
+#include "include/gnl.h"
 
 int compare(char *str, char *compare)
 {

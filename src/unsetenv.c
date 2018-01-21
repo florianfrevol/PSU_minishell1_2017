@@ -8,7 +8,6 @@
 #include <stdio.h>
 #include <errno.h>
 #include <sys/types.h>
-#include "include/minishell.h"
 #include "include/gnl.h"
 #include <stdlib.h>
 
@@ -31,6 +30,7 @@ int find_i(char **env, char *str)
 		}
 		i ++;
 	}
+	return (0);
 }
 
 char **delate_lign(char **env, char *str)
@@ -42,9 +42,6 @@ char **delate_lign(char **env, char *str)
 
 	while (env[k + i] != 0) {
 		e = 0;
-		if (i == find_i(env, str)) {
-			k ++;
-		}
 		new_env[i] = malloc(sizeof(char) * my_strlen(env[k + i]) + 1);
 		while (env[k + i][e] != '\0') {
 			new_env[i][e] = env[k + i][e];
@@ -52,6 +49,9 @@ char **delate_lign(char **env, char *str)
 		}
 		new_env[i][e] = '\0';
 		i ++;
+		if (i == find_i(env, str)) {
+			k ++;
+		}
 	}
 	new_env[i + 1] = 0;
 	return (new_env);

@@ -5,7 +5,7 @@
 ** 
 */
 
-#include "include/minishell.h"
+#include "include/gnl.h"
 #include <unistd.h>
 #include <stdlib.h>
 

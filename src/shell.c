@@ -8,7 +8,6 @@
 #include <stdio.h>
 #include <errno.h>
 #include <sys/types.h>
-#include "include/minishell.h"
 #include "include/gnl.h"
 #include <stdlib.h>
 
@@ -33,7 +32,6 @@ void check_for_env(char **env, char *str)
 int check_word(char *str)
 {
 	int i = 0;
-	int e = 0;
 
 	while (str[i] == ' ' || str[i] == '\t')
 		i ++;
@@ -69,7 +67,7 @@ char *reduce_change_env(char *str, int i)
 	return (new);
 }
 
-char *change_env(char *str, char *first_word)
+char *change_env(char *str)
 {
 	char *new = malloc(sizeof(char) * my_strlen(str) + 1);
 	int i = 0;
@@ -100,7 +98,7 @@ char **reduce_put_env(char **env, char *str)
 			e ++;
 		}
 		if (check == my_strlen(first_word)) {
-			env[i] = change_env(str, first_word);
+			env[i] = change_env(str);
 			return (env);
 		}
 		i ++;
@@ -235,14 +233,11 @@ int main(int argc, char **argv, char **env)
 	while (1) {
 		my_putstr("$> ");
 		str = get_next_line(0);
-		if (str == NULL) {
-			return(0);
-		}
 		tabl = create_tabl_str(str);
 		check_for_env(env, str);
 		check_for_commande(str);
-		env = check_unsetenv(env, tabl, str);
 		env = check_setenv(env, str);
+		env = check_unsetenv(env, tabl, str);
 		if (compare(str, "exit") == 2) {
 			my_putstr("exit\n");
 			return (compt_number(str));
