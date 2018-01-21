@@ -233,7 +233,7 @@ int main(int argc, char **argv, char **env)
 	char **tabl;
 
 	while (1) {
-		my_putstr("$>");
+		my_putstr("$> ");
 		str = get_next_line(0);
 		tabl = create_tabl_str(str);
 		check_for_env(env, str);

@@ -19,7 +19,7 @@ NAME	=	mysh
 all: $(NAME)
 
 $(NAME):	$(OBJ)
-	gcc -o $(NAME) $(OBJ) libgnl.a
+	gcc -Wall -Wextra -Werror -o $(NAME) $(OBJ) libgnl.a
 
 clean:
 	rm -f $(OBJ)

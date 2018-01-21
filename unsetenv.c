@@ -57,6 +57,28 @@ char **delate_lign(char **env, char *str)
 	return (new_env);
 }
 
+int check_unsetenv_possible(char **env, char *str)
+{
+	int i = 0;
+	int e = 0;
+	int check = 0;
+
+	while (env[i] != 0) {
+		e = 0;
+		check = 0;
+		while (str[e] != '\0') {
+			if (str[e] == env[i][e])
+				check ++;
+			e ++;
+		}
+		if (check == my_strlen(str)) {
+			return (2);
+		}
+		i ++;
+	}
+	return (3);
+}
+
 char **check_unsetenv(char **env, char **tabl, char *str)
 {
 	int i = 1;
@@ -65,14 +87,15 @@ char **check_unsetenv(char **env, char **tabl, char *str)
 
 	if (compare(str, "unsetenv") == 2) {
 		while (i != nbr_word(str)) {
-			if (k == 0) {
+			if (k == 0 && check_unsetenv_possible(env, tabl[i]) == 2) {
 				new_env = delate_lign(env, tabl[i]);
 				k ++;
-			} else
+			} else if (k != 0 && check_unsetenv_possible(new_env, tabl[i]) == 2)
 				new_env = delate_lign(new_env, tabl[i]);
 			i ++;
 		}
-		return (new_env);
+		if (k != 0)
+			return (new_env);
 	}
 	return (env);
 }
