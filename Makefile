@@ -9,7 +9,8 @@ SRC	=	src.c\
 		shell.c\
 		getnbr.c\
 		basic_commands.c\
-		setenv.c
+		setenv.c\
+		unsetenv.c
 
 OBJ	=	$(SRC:.c=.o)
 

@@ -84,7 +84,7 @@ char *change_env(char *str, char *first_word)
 	return (new);
 }
 
-char **put_env(char **env, char *str)
+char **reduce_put_env(char **env, char *str)
 {
 	int i = 0;
 	int e = 0;
@@ -101,8 +101,6 @@ char **put_env(char **env, char *str)
 		}
 		if (check == my_strlen(first_word)) {
 			env[i] = change_env(str, first_word);
-			//my_putstr(env[i]);
-			//my_putchar('\n');
 			return (env);
 		}
 		i ++;
@@ -110,20 +108,28 @@ char **put_env(char **env, char *str)
 	return (env);
 }
 
-char **check_setenv_unsetenv(char **env, char *str)
+char **put_env(char **env, char *str)
+{
+	if (compare(str, "setenv") == 2)
+		env = reduce_put_env(env, str);
+	return (env);
+}
+
+char **check_setenv(char **env, char *str)
 {
 	char **new_env = put_setenv(env, str);
 	char **env_if_exist = put_env(env, str);
 
-	if (compare(str, "setenv") == 2 && (check_word(str) == 2 || check_word(str) == 3)
-	&& check_if_exist(env, str) == 2) {
+	if (compare(str, "setenv") == 2 && (check_word(str) == 2 ||
+		check_word(str) == 3) && check_if_exist(env, str) == 2) {
 		return (env);
 	}
 	if (compare(str, "setenv") == 2 && check_word(str) == 2) {
 		return (new_env);
 	}
-	if (compare(str, "setenv") == 2 && check_word(str) == 3)
+	if (compare(str, "setenv") == 2 && check_word(str) == 3) {
 		print_env(env);
+	}
 	return (env);
 }
 
@@ -202,8 +208,23 @@ char **create_tabl_str(char *str)
 {
 	int i = 0;
 	int e = 0;
-	my_put_nbr(nbr_word(str));
-	//char **tabl = malloc(sizeof(char) * nbr_word(str) + 1);
+	int k = 0;
+	char **tabl = malloc(sizeof(char *) * nbr_word(str) + 1);
+
+	while (str[i] != '\0') {
+		e = 0;
+		tabl[k] = malloc(sizeof(char) * my_strlen(str) + 1);
+		while (str[i] == ' ' || str[i] == '\t')
+			i ++;
+		while (str[i] != '\0' && str[i] != ' ' && str[i] != '\t') {
+			tabl[k][e] = str[i];
+			e ++;
+			i ++;
+		}
+		tabl[k][e] = '\0';
+		k ++;
+	}
+	return (tabl);
 }
 
 int main(int argc, char **argv, char **env)
@@ -217,7 +238,8 @@ int main(int argc, char **argv, char **env)
 		tabl = create_tabl_str(str);
 		check_for_env(env, str);
 		check_for_commande(str);
-		env = check_setenv_unsetenv(env, str);
+		env = check_unsetenv(env, tabl, str);
+		env = check_setenv(env, str);
 		if (compare(str, "exit") == 2) {
 			my_putstr("exit\n");
 			return (compt_number(str));

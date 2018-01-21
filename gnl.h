@@ -1,9 +1,8 @@
 /*
-** Get_Next_Line library
-** Only for Minishell1 and Minishell2 project
-**
-** Rank=-42 for other projects !
-**
+** EPITECH PROJECT, 2017
+** gnl.h
+** File description:
+** 
 */
 
 #ifndef	__LIBGNL__

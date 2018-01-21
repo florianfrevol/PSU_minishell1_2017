@@ -19,8 +19,12 @@ int compt_number(char *str);
 char **put_setenv(char **env, char *str);
 int compt_lign(char **env);
 char *find_first_word(char *str);
+int check_if_exist(char **env, char *str);
+char **check_unsetenv(char **env, char **tabl, char *str);
+int nbr_word(char *str);
+void print_env(char **env);
 
 typedef struct s
 {
-	char **new_env;	
+	char **new_env;
 } s_t;

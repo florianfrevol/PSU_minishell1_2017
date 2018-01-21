@@ -5,6 +5,7 @@
 ** 
 */
 
+#include <unistd.h>
 #include "minishell.h"
 
 int compare(char *str, char *compare)
@@ -17,7 +18,8 @@ int compare(char *str, char *compare)
 			e ++;
 		i ++;
 	}
-	if (e == my_strlen(compare) && (str[i] == ' ' || str[i] == '\0' || str[i] == '\n'))
+	if (e == my_strlen(compare) && (str[i] == ' ' ||
+		str[i] == '\0' || str[i] == '\n'))
 		return (2);
 	else
 		return (3);
@@ -30,10 +32,10 @@ void print_only_begining(char *str)
 	while (str[i] == ' ')
 		i ++;
 	while (str[i] != '\0' && str[i] != ' ') {
-		my_putchar(str[i]);
+		write(2, &str[i], 1);
 		i ++;
 	}
-	my_putstr(": Command not found.");
+	write(2, ": Command not found.", 21);
 }
 
 int check_if_empty(char *str)
@@ -43,7 +45,7 @@ int check_if_empty(char *str)
 
 	while (str[i] != '\0' && str[i] != '\n') {
 		if (str[i] != ' ' && str[i] != '\n' &&
-		str[i] != '\0' && str[i] != '\t')
+			str[i] != '\0' && str[i] != '\t')
 			e ++;
 		i ++;
 	}
@@ -57,7 +59,8 @@ void check_for_commande(char *str)
 {
 	if (check_if_empty(str) == 2) {
 		if ((compare(str, "exit") + compare(str, "env") +
-		compare(str, "setenv") + compare(str, "unsetenv")) == 12) {
+			compare(str, "setenv") +
+				compare(str, "unsetenv")) == 12) {
 			print_only_begining(str);
 			my_putchar('\n');
 		}
