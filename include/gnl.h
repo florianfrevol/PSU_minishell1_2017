@@ -32,5 +32,13 @@ void print_env(char **env);
 char **check_setenv(char **env, char *str);
 void check_for_env(char **env, char *str);
 int check_word(char *str);
+char **child_creation(char **env, char **arg, char *str2);
+char **regroup(char *str, char **env, char **tabl);
+char **path_cut(char **env);
+char **take_all_path(char *path, int nb_arg);
+int find_nb_arg(char *path);
+void my_puterror(char *str);
+char *my_strcat(char *source, char *dest);
+char *find_path(char **env);
 
 #endif

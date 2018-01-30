@@ -12,7 +12,8 @@ SRC	=	src/shell.c 		\
 		src/src.c 		\
 		src/getnbr.c		\
 		src/main.c		\
-		src/reduce_shell.c
+		src/reduce_shell.c\
+		src/execution.c
 
 OBJ	=	$(SRC:.c=.o)
 

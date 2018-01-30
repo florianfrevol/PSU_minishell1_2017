@@ -45,7 +45,7 @@ int check_if_empty(char *str)
 	while (str[i] != '\0' && str[i] != '\n') {
 		if (str[i] != ' ' && str[i] != '\n' &&
 			str[i] != '\0' && str[i] != '\t')
-			e ++;
+		e ++;
 		i ++;
 	}
 	if (e != 0)
@@ -58,9 +58,8 @@ void check_for_commande(char *str, char **tabl, char **env)
 {
 	if (check_if_empty(str) == 2) {
 		if ((compare(str, "exit") + compare(str, "env") +
-		compare(str, "setenv") + compare(str, "ls") +
-		compare(str, "pwd") + compare(str, "unsetenv")) == 18) {
-		
+			compare(str, "setenv") + compare(str, "ls") +
+			compare(str, "pwd") + compare(str, "unsetenv")) == 18) {
 			print_only_begining(str);
 		}
 	}
