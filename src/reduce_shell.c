@@ -49,6 +49,7 @@ char **check_setenv(char **env, char *str)
 
 	if (compare(str, "setenv") == 2 && (check_word(str) == 2 ||
 		check_word(str) == 3) && check_if_exist(env, str) == 2) {
+		print_env(env);
 		return (env);
 	}
 	if (compare(str, "setenv") == 2 && check_word(str) == 2) {

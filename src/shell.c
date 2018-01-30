@@ -6,10 +6,13 @@
 */
 
 #include <stdio.h>
-#include <errno.h>
-#include <sys/types.h>
-#include "gnl.h"
 #include <stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <sys/wait.h>
+#include <sys/types.h>
+#include <errno.h>
+#include "gnl.h"
 
 void print_env(char **env)
 {

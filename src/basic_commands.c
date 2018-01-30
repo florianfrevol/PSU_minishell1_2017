@@ -18,8 +18,7 @@ int compare(char *str, char *compare)
 			e ++;
 		i ++;
 	}
-	if (e == my_strlen(compare) && (str[i] == ' ' ||
-		str[i] == '\0' || str[i] == '\n'))
+	if (e == my_strlen(compare))
 		return (2);
 	else
 		return (3);
@@ -55,12 +54,13 @@ int check_if_empty(char *str)
 		return (3);
 }
 
-void check_for_commande(char *str)
+void check_for_commande(char *str, char **tabl, char **env)
 {
 	if (check_if_empty(str) == 2) {
 		if ((compare(str, "exit") + compare(str, "env") +
-			compare(str, "setenv") +
-				compare(str, "unsetenv")) == 12) {
+		compare(str, "setenv") + compare(str, "ls") +
+		compare(str, "pwd") + compare(str, "unsetenv")) == 18) {
+		
 			print_only_begining(str);
 		}
 	}

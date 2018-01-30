@@ -20,7 +20,7 @@ int get_nbr(char *str);
 int compare(char *str, char *compare);
 void print_only_begining(char *str);
 int check_if_empty(char *str);
-void check_for_commande(char *str);
+void check_for_commande(char *str, char **tabl, char **env);
 int compt_number(char *str);
 char **put_setenv(char **env, char *str);
 int compt_lign(char **env);
