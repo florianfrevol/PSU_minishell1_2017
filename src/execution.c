@@ -64,7 +64,7 @@ char **regroup(char *str, char **env, char **tabl)
 {
 	check_for_env(env, str);
 	check_for_commande(str, tabl, env);
-	env = check_setenv(env, str);
+	env = check_setenv(env, str, tabl);
 	env = check_unsetenv(env, tabl, str);
 	return (env);
 }
@@ -91,6 +91,8 @@ char **child_creation(char **env, char **arg, char *str2)
 		waitpid(child_pid, &status, 0);
 		if (WIFSIGNALED(status) == 1)
 			env = regroup(str2, env, arg);
+		if (status == 139 && WIFSIGNALED(status) != 1)
+			my_putchar('M');
 	}
 	return (env);
 }

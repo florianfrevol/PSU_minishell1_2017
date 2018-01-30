@@ -74,11 +74,21 @@ char *find_path(char **env)
 void my_prompt(char **env)
 {
 	int i = 0;
-	int e = 4;
+	int e = 5;
 
-	while (compare(env[i], "PWD=") != 2)
+	my_putchar('[');
+	while (compare(env[i], "USER=") != 2)
 		i ++;
 	while (env[i][e] != '\0') {
+		my_putchar(env[i][e]);
+		e ++;
+	}
+	my_putchar('@');
+	i = 0;
+	e = 9;
+	while (compare(env[i], "HOSTNAME") != 2)
+		i ++;
+	while (env[i][e] != '.') {
 		my_putchar(env[i][e]);
 		e ++;
 	}
@@ -89,20 +99,23 @@ int main(int argc, char **argv, char **env)
 {
 	char *str;
 	char **tabl;
+	int interactive_mode = isatty(STDIN_FILENO) && isatty(STDERR_FILENO);
 
 	while (1) {
-		my_prompt(env);
+		if (interactive_mode == 1)
+			my_prompt(env);
 		str = get_next_line(0);
 		if (str == NULL) {
-			my_putchar('\n');
+			if (interactive_mode == 1)
+				my_putchar('\n');
 			return (0);
 		}
 		tabl = create_tabl_str(str);
-		env = child_creation(env, tabl, str);
 		if (compare(str, "exit") == 2) {
 			my_putstr("exit\n");
 			return (compt_number(str));
 		}
+		env = child_creation(env, tabl, str);
 	}
 	return (0);
 }

@@ -29,7 +29,7 @@ int check_if_exist(char **env, char *str);
 char **check_unsetenv(char **env, char **tabl, char *str);
 int nbr_word(char *str);
 void print_env(char **env);
-char **check_setenv(char **env, char *str);
+char **check_setenv(char **env, char *str, char **tabl);
 void check_for_env(char **env, char *str);
 int check_word(char *str);
 char **child_creation(char **env, char **arg, char *str2);

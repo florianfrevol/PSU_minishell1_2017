@@ -42,7 +42,7 @@ char **put_env(char **env, char *str)
 	return (env);
 }
 
-char **check_setenv(char **env, char *str)
+char **check_setenv(char **env, char *str, char **tabl)
 {
 	char **new_env = put_setenv(env, str);
 	char **env_if_exist = put_env(env, str);
